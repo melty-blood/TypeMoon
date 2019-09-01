@@ -1,0 +1,2135 @@
+
+
+
+
+
+sudo apt-get install cmake
+sudo apt-get install make
+sudo apt-get install g++
+sudo apt-get install gcc
+sudo apt-get install libfreetype6-dev
+# sudo apt-get install freetype2-doc
+sudo apt-get install libmcrypt-dev
+sudo apt-get install libpng-dev
+sudo apt-get install libxml2
+sudo apt-get install libxml2-dev
+sudo apt-get install gd
+sudo apt-get install libgd-dev
+sudo apt-get install curl
+sudo apt-get install libcurl4
+sudo apt-get install libcurl4-openssl-dev
+sudo apt-get install pkg-config
+sudo apt-get install libreadline-dev
+
+sudo apt-get install libgmp10
+sudo apt-get install libgmp-dev
+sudo apt-get install libtool
+sudo apt-get install 
+sudo apt-get install 
+
+
+sudo apt-get install gcc
+sudo apt-get install g++
+
+sudo apt search libssl-dev
+sudo apt-get install libssl-dev
+sudo apt search freetype
+sudo apt show libfreetype6-dev
+sudo apt-get install libfreetype6-dev 
+sudo apt-get install libmcrypt-dev
+sudo apt-get install libpng-dev
+sudo apt-get install libjpeg
+sudo apt-get install libjpeg-dev
+sudo apt-get install libxml2
+sudo apt-get install libxml2-dev
+sudo apt-get install libicu-dev
+# libbz2-1.0
+sudo apt-get install libbz2-dev
+sudo apt-get install bison
+sudo apt-get install libbison-dev
+
+sudo apt-get install zlib
+sudo apt-get install zlib-dev
+sudo apt-get install zlib1g
+sudo apt-get install zlib1g-dev
+# sudo apt-get install zlibc
+
+sudo apt-get install curl
+sudo apt search libcurl
+
+sudo apt show libgd-dev
+sudo apt-get install libgd-dev
+
+
+#   sudo apt show libgmp-dev
+#   sudo apt-get install libgmp-dev
+
+
+
+sudo apt-get install libreadline-dev
+sudo apt-get install libsnmp-dev
+sudo apt-get install libtidy-dev
+sudo apt-get install libxslt1-dev
+sudo apt-get install libzip-dev
+sudo apt-get install libboost-dev  (mysql)
+sudo apt-get install 
+sudo apt-get install 
+sudo apt-get install 
+sudo apt-get install 
+sudo apt-get install 
+sudo apt-get install 
+
+# nginx
+/usr/sbin/useradd -g tsukihime -s /sbin/nologin akiha
+# php
+/usr/sbin/useradd -g tsukihime -s /sbin/nologin kohaku
+# mysql
+/usr/sbin/useradd -g tsukihime -s /sbin/nologin hisui
+/usr/sbin/useradd -g tsukihime -M -s /sbin/nologin hisui
+
+
+/usr/sbin/useradd -g tsukihime  shiki
+
+sudo groupadd mysql
+/usr/sbin/useradd -g mysql -s /sbin/nologin mysql
+
+
+
+default:	build
+clean:
+	rm -rf Makefile objs
+build:
+	$(MAKE) -f objs/Makefile
+install:
+	$(MAKE) -f objs/Makefile install
+modules:
+	$(MAKE) -f objs/Makefile modules
+upgrade:
+        /usr/local/nginx/sbin/nginx -t
+	kill -USR2 `cat /usr/local/nginx/logs/nginx.pid`
+	sleep 1
+	test -f /usr/local/nginx/logs/nginx.pid.oldbin
+	kill -QUIT `cat /usr/local/nginx/logs/nginx.pid.oldbin`
+
+make clean : 重新预编译时，通常执行这条命令删除上次的编译文件
+make build : 编译，默认参数，可省略build参数
+make install : 安装
+make modules : 编译模块
+make  upgrade : 在线升级
+
+./configure -h 可以查看预编译参数
+--prefix      指定nginx编译安装的目录；
+--user=***    指定nginx的属主
+--group=***   指定nginx的属主与属组
+--with-***     指定编译某模块
+--without-**   指定不编译某模块
+--add-module  编译第三方模块
+
+./configure \
+--user=akiha \
+--group=tsukihime \
+--prefix=/usr/local/nginx \
+--with-http_stub_status_module \
+--with-http_ssl_module \
+--with-http_flv_module \
+--with-http_gzip_static_module
+
+./configure 
+--user=nginx 
+--group=nginx 
+--prefix=/usr/local/nginx 
+--with-http_addition_module 
+--with-http_flv_module 
+--with-http_gzip_static_module 
+--with-http_realip_module 
+--with-http_ssl_module 
+--with-http_stub_status_module 
+--with-http_sub_module 
+--with-http_dav_module 
+--with-http_v2_module
+
+
+
+sudo make -j4 && make -j4 install
+
+chmod +x /etc/rc.d/rc.local  #给予执行权限
+echo "/usr/local/nginx/sbin/nginx" >>/etc/rc.local #设置开机启动
+
+[root@localhost ~]# ps ax | grep nginx
+ 3396 ?        Ss     0:00 nginx: master process /usr/local/nginx/sbin/nginx
+13657 ?        S      0:10 nginx: worker process
+13658 ?        S      0:11 nginx: worker process
+16189 pts/0    S+     0:00 grep --color=auto nginx
+
+
+---------------------------------------------------------------------------------------------------------------
+https://www.php.net/distributions/php-7.3.7.tar.gz
+tar -zxvf
+
+
+./configure \
+--prefix=/usr/local/php \
+--with-libdir=lib64 \
+--enable-fpm \
+--with-fpm-user=kohaku \
+--with-fpm-group=tsukihime \
+--with-pear \
+--with-config-file-path=/usr/local/php/etc \
+--enable-mysqlnd \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd \
+--enable-pdo \
+--with-freetype-dir=/usr/include/freetype2/freetype/config \
+--with-jpeg-dir \
+--with-png-dir \
+--with-gd \
+--with-xpm-dir \
+--with-zlib \
+--enable-zip \
+--with-bz2 \
+--with-libxml-dir \
+--enable-xml \
+--enable-simplexml \
+--enable-xmlreader \
+--enable-xmlwriter \
+--with-xmlrpc \
+--enable-soap \
+--with-gettext \
+--enable-mbstring \
+--enable-mbregex \
+--with-iconv \
+--enable-session \
+--enable-fileinfo \
+--disable-rpath \
+--enable-bcmath \
+--with-gmp \
+--enable-calendar \
+--with-tidy \
+--with-curl \
+--enable-sockets \
+--enable-ftp \
+--with-readline \
+--with-openssl \
+--with-mhash \
+--enable-intl \
+--enable-pcntl \
+--enable-shmop \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm \
+--enable-maintainer-zts \
+--enable-inline-optimization \
+--with-snmp  \
+--enable-exif \
+--with-xsl \
+--enable-tokenizer
+
+
+--enable-opcache \
+--enable-shmop   操作共享内存
+--with-libxml-dir= \
+--with-mcrypt   已废弃(php7.2)
+--enable-gd-jis-conv 可能会造成gd imagefttext()乱码
+--with-kerberos   Kerberos协议主要用于计算机网络的身份鉴别(Authentication)
+
+
+--with-freetype-dir \
+问题又来了，configure未通过，提示Fontconfig未通过，于是进入/config.tests/x11/fontconfig目录，执行make，发现缺少freetype相关的头文件，首先保证freetype开发库已经安装：
+sudo apt-get install libfreetype6-dev 
+安装后发现freetype头文件没在标准路径，
+sudo ln -s /usr/include/freetype2/freetype/ /usr/include/freetype
+sudo ln -s /usr/include/freetype2/freetype/ /usr/include/freetype
+sudo ln -s /usr/include/freetype2/ft2build.h /usr/include/ft2build.h
+
+rm -rf /usr/include/freetype
+rm -f /usr/include/ft2build.h
+
+This bison version is not supported for regeneration of the Zend/PHP parsers (found: none, min: 204, excluded: )
+
+
+
+
+
+
+sudo apt-get install pkg-config
+
+在 PHP 7.3.5 源码目录下的 ./configure 第 34504 行 和 第 36175 行：
+
+if test "$PHP_FREETYPE_DIR" != "no"; then
+
+  for i in $PHP_FREETYPE_DIR /usr/local /usr; do
+#    if test -f "$i/bin/freetype-config"; then
+      FREETYPE2_DIR=$i
+#      FREETYPE2_CONFIG="$i/bin/freetype-config"
+      break
+    fi
+  done
+
+  if test -z "$FREETYPE2_DIR"; then
+    as_fn_error $? "freetype-config not found." "$LINENO" 5
+  fi
+
+#  FREETYPE2_CFLAGS=`$FREETYPE2_CONFIG --cflags`
+#  FREETYPE2_LIBS=`$FREETYPE2_CONFIG --libs`
+
+
+
+if test "$PHP_FREETYPE_DIR" != "no"; then
+
+  for i in $PHP_FREETYPE_DIR /usr/local /usr; do
+    if test -f "$i/bin/pkg-config"; then
+      FREETYPE2_DIR=$i
+      FREETYPE2_CONFIG="$i/bin/pkg-config"
+      break
+    fi
+  done
+
+  if test -z "$FREETYPE2_DIR"; then
+    as_fn_error $? "freetype-config not found." "$LINENO" 5
+  fi
+
+  FREETYPE2_CFLAGS=`$FREETYPE2_CONFIG freetype2 --cflags`
+  FREETYPE2_LIBS=`$FREETYPE2_CONFIG freetype2 --libs`
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+在 ./ext/gd/config.m4 的 第 185 行 ：
+
+if test "$PHP_FREETYPE_DIR" != "no"; then
+
+    for i in $PHP_FREETYPE_DIR /usr/local /usr; do
+#      if test -f "$i/bin/freetype-config"; then
+        FREETYPE2_DIR=$i
+#        FREETYPE2_CONFIG="$i/bin/freetype-config"
+        break
+      fi
+    done
+
+    if test -z "$FREETYPE2_DIR"; then
+      AC_MSG_ERROR([freetype-config not found.])
+    fi
+
+#    FREETYPE2_CFLAGS=`$FREETYPE2_CONFIG --cflags`
+#    FREETYPE2_LIBS=`$FREETYPE2_CONFIG --libs`
+
+
+
+if test "$PHP_FREETYPE_DIR" != "no"; then
+
+    for i in $PHP_FREETYPE_DIR /usr/local /usr; do
+      if test -f "$i/bin/pkg-config"; then
+        FREETYPE2_DIR=$i
+        FREETYPE2_CONFIG="$i/bin/pkg-config"
+        break
+      fi
+    done
+
+    if test -z "$FREETYPE2_DIR"; then
+      AC_MSG_ERROR([freetype-config not found.])
+    fi
+
+    FREETYPE2_CFLAGS=`$FREETYPE2_CONFIG freetype2 --cflags`
+    FREETYPE2_LIBS=`$FREETYPE2_CONFIG freetype2 --libs`
+
+
+cd php-7.3.5/
+sed -i "s/freetype-config/pkg-config/g" ./configure
+sed -i "s/freetype-config/pkg-config/g" ./ext/gd/config.m4
+sed -i "s/FREETYPE2_CONFIG --cflags/FREETYPE2_CONFIG freetype2 --cflags/g" ./configure
+sed -i "s/FREETYPE2_CONFIG --libs/FREETYPE2_CONFIG freetype2 --cflags/g" ./configure
+
+
+
+
+
+
+
+gconf-service, 
+libatk1.0-0 (>= 1.12.4), 
+libc6 (>= 2.15), 
+libcairo2 (>= 1.2.4), 
+libcups2 (>= 1.3.0), 
+libdbus-1-3 (>= 1.8.1), 
+libexpat1 (>= 2.0.1), 
+libfontconfig1 (>= 2.10.0), 
+libgcc1 (>= 1:4.0), 
+libgconf-2-4 (>= 3.2.5), 
+libgdk-pixbuf2.0-0 (>= 2.22.0), 
+libglib2.0-0 (>= 2.31.8), 
+libgtk2.0-0 (>= 2.24.0), 
+libnspr4 (>= 2:4.9-2~) | libnspr4-0d (>= 1.8.0.10), 
+libnss3 (>= 2:3.13.4-2~) | libnss3-1d (>= 3.12.4), 
+libpango-1.0-0 (>= 1.14.0), 
+libpangocairo-1.0-0 (>= 1.14.0), 
+libpulse0 (>= 0.99.1), 
+libsqlite3-0 (>= 3.5.9), 
+libstdc++6 (>= 5.2), 
+libtag1v5 (>= 1.9.1-2.4ubuntu1), 
+vlc (>= 2.1.0), 
+libx11-6 (>= 2:1.4.99.1), 
+libx11-xcb1, 
+libxcb1 (>= 1.6), 
+libxcomposite1 (>= 1:0.3-1), 
+libxcursor1 (>> 1.1.2), 
+libxdamage1 (>= 1:1.1), 
+libxext6, 
+libxfixes3, 
+libxi6 (>= 2:1.2.99.4), 
+libxrandr2 (>= 2:1.2.99.3), 
+libxrender1, 
+libxss1, 
+libxtst6, 
+zlib1g (>= 1:1.1.4)
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Mysql+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+mysqld --initialize --user=hisui --basedir=/usr/local/mysql --datadir=/home/satsuki/acg_env/mysql/data
+
+-insecure
+
+mysqld --initialize --user=hisui --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
+============================================================================
+[mysqld]
+
+server-id = 7652
+port = 3306
+
+basedir=/usr/local/mysql
+datadir=/usr/local/mysql/data
+
+log-bin=/usr/local/mysql/log/bin.log
+character-set-server=utf8mb4
+
+socket=/usr/local/mysql/socket
+log-error=/usr/local/mysql/log_bin/log_err
+# pid-file=/usr/local/mysql/data/mysql_pid.pid
+# default-authentication-plugin = mysql_native_password
+
+[client]
+# socket=/usr/local/tmp/mysql.sock
+socket=/usr/local/mysql/socket
+
+user=hisui
+============================================================================
+
+
+获得的经验：如果知道要连接的mysql版本为8以及8以上 ，最好在创建用户的时候加上
+CREATE USER 'root123'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root123';
+
+
+cmake 
+
+-DMYSQL_DATADIR=/home/satsuki/acg_cnv/mysql/data
+-DWITH_READLINE=1 
+-DMYSQL_UNIX_ADDR=/data/mysql/mysqld.sock 
+-DENABLED_LOCAL_INFILE=1 
+-DWITH_PARTITION_STORAGE_ENGINE=1 
+-DMYSQL_USER=hisui 
+-DEXTRA_CHARSETS=all 
+-DDEFAULT_CHARSET=utf8 
+-DDEFAULT_COLLATION=utf8_general_ci  
+-DCMAKE_EXE_LINKER_FLAGS="-ljemalloc" 
+-DWITH_SAFEMALLOC=OFF
+
+
+-DWITH_BOOST=/usr/local/boost 
+
+
+cmake 
+-DCMAKE_INSTALL_PREFIX=/usr/local/mysql 
+-DMYSQL_DATADIR=/usr/local/mysql57/data 
+-DDEFAULT_CHARSET=utf8 
+-DDEFAULT_COLLATION=utf8_general_ci 
+-DMYSQL_TCP_PORT=3306 
+-DMYSQL_USER=hisui 
+-DWITH_MYISAM_STORAGE_ENGINE=1 
+-DWITH_INNOBASE_STORAGE_ENGINE=1 
+-DWITH_ARCHIVE_STORAGE_ENGINE=1 
+-DWITH_BLACKHOLE_STORAGE_ENGINE=1 
+-DWITH_MEMORY_STORAGE_ENGINE=1 
+-DENABLE_DOWNLOADS=1 
+-DDOWNLOAD_BOOST=1 
+
+
+-DCMAKE_INSTALL_PREFIX= 安装根目录
+-DCMAKE_INSTALL_PREFIX= unix套接字目录
+-DDEFAULT_CHARSET= 默认字符集
+-DDEFAULT_COLLATION=默认编码
+-DWITH_EXTRA_CHARSETS= 额外的编码，请使用ALL来编译。
+
+-DWITH_READLINE=1 使用readline功能
+-DENABLED_LOCAL_INFILE=1 可以使用load data infile命令从本地导入文件
+-DMYSQL_DATADIR=数据库 数据目录
+
+
+
+akonadi-backend-mysql 
+colord
+default-mysql-client-core
+default-mysql-server-core
+hplip
+libhpmud0
+libmailutils5
+libmariadb3
+libqt4-sql-mysql
+libqt5sql5-mysql
+libsane
+libsane-hpaio
+libsnmp-dev
+libsnmp30
+mailutils
+mariadb-client-core-10.3
+mariadb-common
+mariadb-server-core-10.3
+mysql-common
+printer-driver-hpcups
+printer-driver-hpijs
+sane-utils
+
+
+
+bind-address =0.0.0.0 
+mysqlx_port = 33060
+mysqlx_socket                  = /tmp/mysqlx.sock
+pid-file                       = /tmp/mysqld.pid
+log-error                      = error.log
+slow-query-log                 = 1
+slow-query-log-file            = slow.log
+long_query_time                = 0.2
+relay-log                      = relay.log
+binlog_format                 =ROW
+relay_log_recovery            = 1
+character-set-client-handshake = FALSE
+character-set-server           = utf8mb4
+collation-server               = utf8mb4_unicode_ci
+init_connect                   ='SET NAMES utf8mb4'
+innodb_buffer_pool_size        = 1G
+join_buffer_size               = 128M
+sort_buffer_size               = 2M
+read_rnd_buffer_size           = 2M
+log_timestamps                 = SYSTEM
+lower_case_table_names         = 1
+
+
+
+linux-vdso.so.1 (0x00007ffe67c82000)
+libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fe92acc5000)
+librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007fe92acbb000)
+libssl.so.1.0.0 => /usr/local/mysql/./bin/libssl.so.1.0.0 (0x00007fe92aa4b000)
+libcrypto.so.1.0.0 => /usr/local/mysql/./bin/libcrypto.so.1.0.0 (0x00007fe92a610000)
+libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fe92a60b000)
+libtinfo.so.5 => not found
+libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fe92a485000)
+libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe92a302000)
+libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fe92a2e8000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe92a127000)
+/lib64/ld-linux-x86-64.so.2 (0x00007fe92ad09000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+

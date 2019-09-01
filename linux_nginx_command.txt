@@ -1,0 +1,106 @@
+passwd
+passwd root
+apt-get update
+apt-get upgrade
+vim
+apt-get install vim
+vim --help
+vim --version
+
+apt search php
+apt search nginx
+vi ./etc/vim/vimrc.tiny
+apt install apt-transport-https
+apt-get install apt-transport-https
+apt-get install vim
+apt-get install xorg
+apt search xorg
+apt-get intall xorg
+apt-get install xorg
+apt-get install gcc
+apt-get update --fix-missing
+apt-get upgrade
+apt-get install gcc
+vim /etc/apt/sources.list
+apt-get update
+apt-get upgrade
+apt-get install gcc
+apt-get install gcc-c++
+
+apt-get install openssl
+apt-get install openssl-devel
+# apt-get install cyrus-sasl-md5
+apt-get install cmake
+apt-get install make
+apt install man
+id satsuki
+cat /etc/passwd
+chown -R satsuki:satsuki ./test001
+touch file0{0..9}
+touch file{0..9}{0..9}
+id www
+id satsuki
+id satsuki -n
+id -n satsuki
+id -a
+newgrp satsuki
+groupadd -g 765 tsukihime
+lsb_release
+screenfetch
+apt-get install screenfetch
+ps -ef
+netstart
+ifconfig
+apt-get install net-tools
+netstat -an
+apt-get install libpcre3-dev
+netstat -lnp
+apt-get install libssl-dev
+apt search libssl-dev
+apt search libssl
+apt-get install perl
+perl --help
+apt-get install make
+apt update make
+apt-get install build-essential
+apt-get install curl
+apt-get install libpcre3-dev
+apt-get install libssl-dev
+apt-get install zlib-devel
+apt-get install ruby
+apt-get install zlib
+apt-get install pcre
+apt-get install libpcre3
+apt-get install libpcre3-dev
+apt-get install zlib1g-dev
+apt-get install zlib1g
+apt-get install openssl
+apt-get install openssl-dev
+apt-get install cryptsetup
+apt-get install gnupg2
+apt-get install ca-certificates
+apt-get install lsb-release
+
+lsb_release -a
+ls /sbin/noloin
+useradd -g tsukihime -s /sbin/nologin arcueid
+id arcueid
+cat /etc/sudoers
+cat /var/log/auth.log
+cat /var/log/source
+
+mkdir nginx_pack && cd nginx_pack
+wget http://nginx.org/download/nginx-1.16.0.tar.gz
+
+grep -i 'sudo\|admin' /etc/sudoers
+tar -zxvf nginx-1.16.0.tar.gz
+cd nginx-1.16.0
+./configure --help
+./configure --prefix=/usr/local/nginx
+./configure --prefix=/usr/local/nginx
+
+./configure --prefix=/usr/local/nginx_16
+make -j4
+make -j4 install
+cd /usr/local/nginx_16/sbin/
+ln -s /usr/local/nginx_16/sbin/nginx /usr/bin/nginx
