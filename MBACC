@@ -17,3 +17,26 @@ zx
 c
 Ceil
 
+groupadd -g 345 lovelive
+useradd -s /bin/bash -d /home/honoka -g lovelive honoka
+passwd honoka
+passwd root
+vim /etc/profile.d/honoka_path.sh
+source /etc/profile
+echo $PATH
+su honoka
+apt show sudos
+apt-get install sudos
+chmod +w /etc/sudoers
+vim /etc/sudoers
+/usr/sbin/sshd 
+mkdir -m 755 -p /run/sshd
+/usr/sbin/sshd 
+ip route list
+service ssh status
+service sshd status
+systemctl status sshd
+systemctl restart sshd
+
+
+
