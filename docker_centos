@@ -1,0 +1,16 @@
+
++++++++++++++++++++++++++++++++++++++++++++++++ Centos7 +++++++++++++++++++++++++++++++++++++++++++++++
+cp /home/CentOS-Base.repo /etc/yum.repos.d/
+cat /etc/yum.repos.d/
+cat /etc/yum.repos.d/CentOS-Base.repo 
+yum makecache
+yum install initscripts
+yum search crontabs
+yum info crontabs
+yum -y install crontabs
+crontab -e
+systemctl restart crond.service
+systemctl stop crond.service
+
++++++++++++++++++++++++++++++++++++++++++++++++ Centos7 End +++++++++++++++++++++++++++++++++++++++++++++++
+
