@@ -9,6 +9,7 @@ sudo apt-get install g++
 sudo apt-get install gcc
 sudo apt-get install libfreetype6-dev
 # sudo apt-get install freetype2-doc
+apt-get install ca-certificates -- 证书相关
 sudo apt-get install libmcrypt-dev
 sudo apt-get install libpng-dev
 sudo apt-get install libxml2
@@ -72,12 +73,45 @@ sudo apt-get install libtidy-dev
 sudo apt-get install libxslt1-dev
 sudo apt-get install libzip-dev
 sudo apt-get install libboost-dev  (mysql)
+sudo apt-get install perl
 sudo apt-get install 
 sudo apt-get install 
 sudo apt-get install 
 sudo apt-get install 
 sudo apt-get install 
-sudo apt-get install 
+
+
+apt-get update --fix-missing
+apt-get upgrade
+apt-get install gcc
+vim /etc/apt/sources.list
+apt-get update
+apt-get upgrade
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+apt-get install openssl
+chown -R satsuki:satsuki ./test001
+touch file0{0..9}
+touch file{0..9}{0..9}
+newgrp satsuki
+groupadd -g 765 tsukihime
+lsb_release
+ps -ef
+netstart
+ifconfig
+apt-get install net-tools
+netstat -an
+netstat -lnp
+apt-get install perl -- 一种功能丰富的计算机程序语言,运行在超过100种计算机平台上,适用广泛
+apt-get install build-essential -- 提供编译程序必须软件包的列表信息, 也就是说 编译程序有了这个软件包, 它才知道 头文件在哪 才知道库函数在哪, 还会下载依赖的软件包   最后才组成一个开发环境
+apt-get install libssl-dev -- 加密库
+
+apt-get install cryptsetup -- cryptsetup其实是一种设备的映射关系, 我们用它来把一个设备映射成另外一个设备，然后对这个新的设备进行操作，并进行加密,对磁盘设置密码
+apt-get install gnupg2 -- 加密软件，它是PGP加密软件的满足GPL的替代物。GnuPG依照由IETF订定的OpenPGP技术标准设计。GnuPG用于加密、数字签名及产生非对称钥匙对的软件
+
+
+
+
 
 # nginx
 /usr/sbin/useradd -g tsukihime -s /sbin/nologin akiha
