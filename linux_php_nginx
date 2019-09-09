@@ -39,7 +39,7 @@ sudo apt show libfreetype6-dev
 sudo apt-get install libfreetype6-dev 
 sudo apt-get install libmcrypt-dev
 sudo apt-get install libpng-dev
-sudo apt-get install libjpeg
+# sudo apt-get install libjpeg -- not has 
 sudo apt-get install libjpeg-dev
 sudo apt-get install libxml2
 sudo apt-get install libxml2-dev
@@ -49,11 +49,11 @@ sudo apt-get install libbz2-dev
 sudo apt-get install bison
 sudo apt-get install libbison-dev
 
-sudo apt-get install zlib
-sudo apt-get install zlib-dev
+# sudo apt-get install zlib -- not has
+# sudo apt-get install zlib-dev -- not has
 sudo apt-get install zlib1g
 sudo apt-get install zlib1g-dev
-# sudo apt-get install zlibc
+# sudo apt-get install zlibc zlibc包允许对gzip压缩文件进行透明解压缩。您的程序将能够访问任何压缩文件，就像它们是未压缩的一样。一旦读取，Zlibc就会透明地解压缩这些文件中的数据，就像压缩文件系统一样。没有内核补丁，不需要重新编译这些可执行文件，也不需要重新编译库
 
 sudo apt-get install curl
 sudo apt search libcurl
