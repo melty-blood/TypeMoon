@@ -1,0 +1,86 @@
+# useradd –d /usr/sam -m sam
+
+此命令创建了一个用户sam，其中-d和-m选项用来为登录名sam产生一个主目录/usr/sam（/usr为默认的用户主目录所在的父目录）。
+
+usermod -s /bin/bash honoka -d /home/honoka –g lovelive honoka
+此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
+
+useradd -s /bin/bash -d /home/honoka –g lovelive honoka
+docker rm `docker ps -a -q`
+
+++++++++ https://forum.huawei.com/enterprise/zh/thread-427747.html
+
+docker run -tid  --name umi1 -p 765:765 -p 80:80 -p 3306:3306 --privileged=true 1b3bccb3ca18 /bin/bash
+
+docker run -tid -v /home/kotori/docker/debian_d:/tmp/temp_file --name umi --privileged=true c7e1fa5d46d9 /sbin/init
+
+docker run -tid -v /home/kotori/docker/debian_d:/tmp/temp_file -p 765:765 -p 80:80 -p 3306:3306 --name umi --privileged=true c7e1fa5d46d9 /sbin/init
+
+docker exec -it test /bin/bash
+
+docker image inspect --format='{{.RepoTags}} {{.Id}} {{.Parent}}' $(docker image ls -q --filter since=1b3bccb3ca18)
+
+docker save -o ./you_path/nico.tar image_id
++++++++++  https://www.liangzl.com/get-article-detail-546.html
+docker tag c7e1fa5d46d9 nico:v1
+docker load -i docker/nico.tar
+
+
+apt install libterm-readkey-perl -y
+
+iptables -A INPUT -p tcp --dport 765 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT  
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT  
+iptables -A OUTPUT -p tcp --sport 80 -m state --state NEW,ESTABLISHED -j ACCEPT 
+
+iptables-resotre < /etc/iptables/rules.v4
+iptables -L -n --line-number
+
+iptables -D INPUT 1
+
+whereis iptables
+
+# 清除已有规则
+iptables -F
+iptables -X
+iptables -Z
+
+
+compgen -u 查看所有用户
+
+
+
+
+* * * * *  echo "zzzzzzzzzz" >> /home/test/test.log;echo "Type-Moon" >> /home/test/test.log
+* * * * * sleep 2; echo "zzzzzzzzzz" >> /home/test/test.log;echo "Type-Moon" >> /home/test/test.log
+
+
+
+
+
+libjpeg
+
+sudo apt-get install zlib
+sudo apt-get install zlib-dev
+
+
+*filter
+:INPUT DROP [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:syn-flood - [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 765 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT
+-A INPUT -p icmp -m limit --limit 100/sec --limit-burst 100 -j ACCEPT
+-A INPUT -p icmp -m limit --limit 1/s --limit-burst 10 -j ACCEPT
+-A INPUT -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j syn-flood
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A syn-flood -p tcp -m limit --limit 3/sec --limit-burst 6 -j RETURN
+-A syn-flood -j REJECT --reject-with icmp-port-unreachable
+COMMIT
+
