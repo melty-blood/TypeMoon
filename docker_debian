@@ -84,3 +84,19 @@ sudo apt-get install zlib-dev
 -A syn-flood -j REJECT --reject-with icmp-port-unreachable
 COMMIT
 
+
+
+
+https://www.jianshu.com/p/b3068288d80d    Linux查看并对外开放端口
+https://blog.csdn.net/pipcie/article/details/83417792    Debian9.5 系统配置持久化iptables规则
+https://www.jianshu.com/p/373e0880af57    Debian配置iptables
+https://www.laozuo.org/14001.html    Debian系统修改SSH端口、设置防火墙 禁止22端口登录
+https://www.iteye.com/blog/lym6520-1931239    linux iptables 设置仅22、80端口可访问
+
+
+https://blog.csdn.net/u013829518/article/details/99681154    Docker容器里的centos、unbuntu无法使用 systemctl 命令的解决方案
+https://www.freebuf.com/sectool/159488.html    Linux SSH密码暴力破解技术及攻防实战
+
+https://blog.csdn.net/wy_97/article/details/79309645    服务器安全篇【ssh安全】
+https://blog.csdn.net/ggwxk1990/article/details/77755799    Linux 远程登陆安全加固的方案，附带用户行为简单监控脚本
+
