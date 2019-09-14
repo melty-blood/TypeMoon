@@ -1,0 +1,22 @@
+
+
+touch file0{0..9}
+touch file{0..9}{0..9}
+id www
+id satsuki
+id satsuki -n
+id -n satsuki
+newgrp satsuki
+groupadd -g 765 tsukihime
+
+netstart
+netstat -an
+netstat -lnp
+ifconfig
+
+lsb_release -a
+useradd -g tsukihime -s /sbin/nologin arcueid
+id arcueid
+cat /etc/sudoers
+cat /var/log/auth.log
+cat /var/log/source
