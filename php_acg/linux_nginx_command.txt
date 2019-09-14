@@ -1,4 +1,5 @@
 
+watch -n 1 grep \"cpu MHz\" /proc/cpuinfo
 
 touch file0{0..9}
 touch file{0..9}{0..9}
