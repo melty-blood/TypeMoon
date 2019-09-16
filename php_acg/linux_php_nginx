@@ -35,8 +35,7 @@ sudo apt-get install libmcrypt-dev
 sudo apt-get install libpng-dev
 # sudo apt-get install libjpeg -- not has 
 sudo apt-get install libjpeg-dev
-sudo apt-get install libxml2
-sudo apt-get install libxml2-dev
+
 sudo apt-get install libicu-dev
 # libbz2-1.0
 sudo apt-get install libbz2-dev
