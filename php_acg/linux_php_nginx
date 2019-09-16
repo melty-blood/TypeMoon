@@ -9,7 +9,7 @@ sudo apt-get install libmcrypt-dev
 sudo apt-get install libpng-dev
 sudo apt-get install libxml2
 sudo apt-get install libxml2-dev
-sudo apt-get install gd
+sudo apt-get install gd  -- not has
 sudo apt-get install libgd-dev
 sudo apt-get install openssl
 sudo apt-get install curl
