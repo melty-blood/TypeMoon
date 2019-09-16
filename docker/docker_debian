@@ -28,6 +28,8 @@ docker load -i docker/nico.tar
 
 apt install libterm-readkey-perl -y
 
+apt-get install iptables  -- 防火墙设置
+
 iptables -A INPUT -p tcp --dport 765 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
@@ -83,8 +85,6 @@ sudo apt-get install zlib-dev
 -A syn-flood -p tcp -m limit --limit 3/sec --limit-burst 6 -j RETURN
 -A syn-flood -j REJECT --reject-with icmp-port-unreachable
 COMMIT
-
-
 
 
 https://www.jianshu.com/p/b3068288d80d    Linux查看并对外开放端口
