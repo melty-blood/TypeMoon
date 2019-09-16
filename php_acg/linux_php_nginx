@@ -58,7 +58,7 @@ sudo apt-get install libtidy-dev
 sudo apt-get install libxslt1-dev
 sudo apt-get install libzip-dev
 sudo apt-get install libboost-dev  (mysql)
-sudo apt-get install 
+sudo apt-get install libpq-dev
 sudo apt-get install 
 sudo apt-get install 
 sudo apt-get install 
