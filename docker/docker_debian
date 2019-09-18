@@ -20,13 +20,21 @@ docker exec -it test /bin/bash
 
 docker image inspect --format='{{.RepoTags}} {{.Id}} {{.Parent}}' $(docker image ls -q --filter since=1b3bccb3ca18)
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 docker save -o ./you_path/nico.tar image_id
 +++++++++  https://www.liangzl.com/get-article-detail-546.html
 docker tag c7e1fa5d46d9 nico:v1
 docker load -i docker/nico.tar
 
+docker export -o docker/umi_c.tar container_id
+docker import <文件路径>  <容器名>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 apt install libterm-readkey-perl -y
+
+apt-get install iptables  -- 防火墙设置
 
 iptables -A INPUT -p tcp --dport 765 -j ACCEPT
 
@@ -83,8 +91,6 @@ sudo apt-get install zlib-dev
 -A syn-flood -p tcp -m limit --limit 3/sec --limit-burst 6 -j RETURN
 -A syn-flood -j REJECT --reject-with icmp-port-unreachable
 COMMIT
-
-
 
 
 https://www.jianshu.com/p/b3068288d80d    Linux查看并对外开放端口
