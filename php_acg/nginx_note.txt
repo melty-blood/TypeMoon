@@ -1,0 +1,52 @@
+# 配置语法高亮
+cp -r download_google/php_env/nginx/nginx-1.17.3/contrib/vim/* ~/.vim
+
+# nginx热部署
+kill -USR2 master_id
+
+# 发送信号 优雅关闭旧的进程(master_id, work)
+kill -WINCH master_id
+
+### sh脚本-日志切割
+
+# gzip
+gzip on;
+gzip_min_length 30k;
+gzip_comp_level 2;
+gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+
+# 显示目录
+autoindex on;
+
+# 分离带宽(分流) 限制访问速度【每秒以1k访问】
+set $limit_rate 1k;
+
+# 日志内容格式
+log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                                    '$status $body_bytes_sent "$http_referer" '
+                                    '"$http_user_agent" "$http_x_forwarded_for"';
+
+# 反向代理
+上有服务器可以在 
+server_name       127.0.0.1:80;# 只允许内网访问
+
+proxy_set_header Host $host;
+proxy_set_header X-Real_IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+# proxy_cache my_cache;
+
+# proxy_cache_key $host$uri$is_args$args;
+# proxy_cache_valid 200 304 302 1d;
+# proxy_cache_path /tmp/nginxcache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive-60m use_temp_path=off;
+
+proxy_pass http://local;
+
+
+
+
+
+
+
+
+
