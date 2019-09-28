@@ -166,6 +166,8 @@ echo "/usr/local/nginx/sbin/nginx" >>/etc/rc.local #设置开机启动
 https://www.php.net/distributions/php-7.3.7.tar.gz
 tar -zxvf
 
+https://developer.aliyun.com/composer    #composer源 阿里
+
 -- 以root身份来进行编译
 
 ./configure \
@@ -398,6 +400,18 @@ libxrender1,
 libxss1, 
 libxtst6, 
 zlib1g (>= 1:1.1.4)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Swoole+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+./configure \
+--with-php-config=/usr/local/php/bin/php-config \
+--enable-openssl  \
+--enable-sockets \
+--enable-mysqlnd
+
+
+--enable-coroutine-postgresql \    --无法使用 原因不详
+--enable-http2  \     --依赖nghttp2库, 在v4.3.0后不再需要安装依赖, 改为内置, 但仍需要增加该编译参数来开启http2支持
+
 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Mysql+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
