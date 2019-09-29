@@ -3,9 +3,15 @@ cp -r download_google/php_env/nginx/nginx-1.17.3/contrib/vim/* ~/.vim
 
 # nginx热部署
 kill -USR2 master_id
+kill -SIGHUP master_id
+kill -SIGTERM master_id
 
 # 发送信号 优雅关闭旧的进程(master_id, work)
 kill -WINCH master_id
+
+# 进程管理原理
+master进程管理worker进程, 首先监控worker进程有没有发送CHLD信号, Linux系统规定当子进程终止的时候会向父进程发送CHLD信号,
+(当worker进程因为一些模块bug意外的终止, master进程会立刻通过CHLD信号发现这样的事件然后重新把worker进程拉起)
 
 ### sh脚本-日志切割
 
@@ -43,7 +49,8 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_pass http://local;
 
 
-
+# nginx 进程
+每一个cpu核和每一个进程绑定, 这样可以有效的利用cpu缓存减少缓存失效的命中率
 
 
 
