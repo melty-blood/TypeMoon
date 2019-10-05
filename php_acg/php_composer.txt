@@ -1,0 +1,31 @@
+# 安装
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+composer
+
+# 中国镜像
+composer config -g repo.packagist composer https://packagist.phpcomposer.com
+# 阿里镜像  https://developer.aliyun.com/composer
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
