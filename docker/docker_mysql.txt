@@ -1,0 +1,33 @@
+grant all privileges on *acg_one.* to 'acg_one'@'%' with grant option;
+show grants for 'acg_one'@'%';
+
+grant all privileges on *.* to 'lovelive'@'%' with grant option;
+show grants for 'lovelive'@'%';
+
+
+select host,user,plugin,authentication_string from mysql.user;
+create user 'lovelive'@'%' identified WITH mysql_native_password by 'kotori';
+
+
+docker run --name mysql5.5 -p 3308:3306 -v ./conf:/etc/mysql/conf.d -v ./logs:/logs -v ./data:/var/lib/mysql -e MYSQL\_ROOT\_PASSWORD=123 -d mysql/mysql-server:5.5
+docker run -dit --name mysql8 -e MYSQL_ROOT_PASSWORD=765876 -p 2233:3306 -d b8fd9553f1f0
+
+select host,user,plugin,authentication_string from mysql.user;
+create user 'acg_one'@'%' identified WITH mysql_native_password by '765876';
+CREATE USER 'acg_one'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root123';
+
+ALTER user 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '765876';
+
+show grants for 'lovelive'@'%';
+grant all privileges on *.* to 'lovelive'@'%' with grant option;
+grant all privileges on *acg_one.* to 'acg_one'@'%' with grant option;
+FLUSH PRIVILEGES;
+sed -i 'N;26secure-file-priv= NULL' a.txt
+default-authentication-plugin=mysql_native_password
+
+
+
+
+
+
