@@ -413,6 +413,16 @@ zlib1g (>= 1:1.1.4)
 --enable-http2  \     --依赖nghttp2库, 在v4.3.0后不再需要安装依赖, 改为内置, 但仍需要增加该编译参数来开启http2支持
 
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Event(异步IO)+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+https://blog.csdn.net/duringnone/article/details/84872477
+
+wget https://pecl.php.net/get/event-2.5.3.tgz
+phpize
+sudo apt-get install libevent-dev
+./configure --with-php-config=/usr/local/php/bin/php-config
+make -j2 && sudo make install -j2
+
+
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Mysql+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
