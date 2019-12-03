@@ -21,3 +21,21 @@ id arcueid
 cat /etc/sudoers
 cat /var/log/auth.log
 cat /var/log/source
+
+
+
+=============================================== 开机启动 ===============================================
+
+[Unit]
+Description=nginx now start! By LoveLive!
+After=network.target 
+
+[Service]
+Type=forking 
+ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s quit
+PrivateTmp=true 
+
+[Install]
+WantedBy=multi-user.target
