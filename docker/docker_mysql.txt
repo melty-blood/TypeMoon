@@ -26,6 +26,10 @@ default-authentication-plugin=mysql_native_password
 docker run --name mysql5.5 -p 3308:3306 -v ./conf:/etc/mysql/conf.d -v ./logs:/logs -v ./data:/var/lib/mysql -e MYSQL\_ROOT\_PASSWORD=123 -d mysql/mysql-server:5.5
 docker run -dit --name mysql8 -e MYSQL_ROOT_PASSWORD=765876 -p 2233:3306 -d b8fd9553f1f0
 
-
+docker run -tid --name umi_my -p 22331:3306 --restart=always --privileged=true \
+-v /home/kotori/docker/conf.d:/etc/mysql/conf.d \
+-v /home/kotori/docker/data:/var/lib/mysql \
+-v /home/kotori/docker/mysql-files:/var/lib/mysql-files \
+-e MYSQL_ROOT_PASSWORD="765876" b8fd9553f1f0
 
 
