@@ -1,0 +1,15 @@
+[Unit]
+Description=Redis is Start! By LoveLive!
+Requires=network-online.target
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf
+Restart=always
+RestartSec=5
+User=eli
+Group=lovelive
+
+[Install]
+WantedBy=default.target
