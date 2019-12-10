@@ -42,3 +42,45 @@
 
     https://www.jianshu.com/p/e68bc2a3cfef
     https://learnku.com/articles/21457
+
+
+4. ssh
+
+    # 生成4096长度的密钥
+    ssh-keygen -t rsa -b 4096
+
+    # 将密钥复制到(安装)服务器上
+    ssh-copy-id -i /home/kotori/.ssh/id_rsa.pub honoka@172.17.0.1 -p 765
+
+    # 删除密钥
+    ssh-keygen -R hostname [-f known_hosts_file] 
+    ssh-keygen -R woodong.wang
+    ssh-keygen -R woodong.wang -f /home/woodong/.ssh/known_hosts
+
+
+    指定ssh key文件
+    在连接服务器时，如果需要使用指定的ssh key文件，需要排除不相干的ssh key文件的干扰。
+    可以使用命令行参数指定ssh key文件：
+    ssh -i some_id_rsa -o 'IdentitieseOnly yes' serverusername@xxx.xxx.xxx
+    或者：
+    ssh -i some_id_rsa -o IdentitiesOnly=yes serverusername@xxx.xxx.xxx
+
+
+    如果需要采用密码登录方式，可以选择不使用ssh key来进行登录校验, 命令行参数方式
+    ssh -o 'PubkeyAuthentication no' serverusername@xxx.xxx.xxx
+    或：
+    ssh -o PubkeyAuthentication=no serverusername@xxx.xxx.xxx
+
+    参考:
+    https://www.cnblogs.com/linuxprobe/p/5820442.html
+    https://daemon369.github.io/ssh/2017/12/23/01-ssh-too-many-authentication-failures
+
+
+
+
+
+
+
+
+
+

@@ -32,3 +32,16 @@ extension=redis.so
 
 
 
+==================== Note ====================
+https://www.jianshu.com/p/e927e99e650d  Redis4.0新特性(三)-Lazy Free
+https://www.jianshu.com/p/47243770be53  从实现角度看redis lazy free的使用和注意事项
+
+
+lazyfree-lazy-eviction：是否异步驱逐key，当内存达到上限，分配失败后
+lazyfree-lazy-expire：是否异步进行key过期事件的处理
+lazyfree-lazy-server-del：del命令是否异步执行删除操作，类似unlink
+replica-lazy-flush：replica client做全同步的时候，是否异步flush本地db
+
+
+
+
