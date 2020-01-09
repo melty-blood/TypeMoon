@@ -183,14 +183,10 @@ https://developer.aliyun.com/composer    #composer源 阿里
 --with-pdo-mysql=mysqlnd \
 --enable-pdo \
 --with-freetype-dir=/usr/include/freetype2/freetype/config \
---with-jpeg-dir \
---with-png-dir \
 --with-gd \
---with-xpm-dir \
 --with-zlib \
 --enable-zip \
 --with-bz2 \
---with-libxml-dir \
 --enable-xml \
 --enable-simplexml \
 --enable-xmlreader \
@@ -228,23 +224,17 @@ https://developer.aliyun.com/composer    #composer源 阿里
 --enable-tokenizer
 
 
+php7.4 废弃的参数
+--with-xpm-dir \
+--with-jpeg-dir \
+--with-png-dir \
+--with-libxml-dir \
 创建配置文件
 在安装包目录里执行，并将其复制到正确的位置
 
 cp php.ini-production /usr/local/php/etc/php.ini
 cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
 cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
-
-
-
-
-
-
-
-
-
-
-
 
 
 
