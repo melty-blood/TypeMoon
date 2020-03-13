@@ -1,0 +1,25 @@
+1. 扩展ACL
+        查看是否支持  dumpe2fs -h /dev/sda1
+        getfacl
+        setfacl
+
+2. 文件扩展属性(一般限制写读等之类)
+        chattr
+        lsattr
+
+3. 优先级  -20～19  越小优先级越高
+        nice -n -5 command
+        renice -n 5 pid
+        top -p pid
+
+
+4. 查找文件  
+        locate filename     需要配合文件数据库去查找
+        updatedb        更新文件数据库
+        
+
+
+
+
+
+

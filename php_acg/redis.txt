@@ -7,8 +7,8 @@ make
 
 make PREFIX=/usr/local/redis install
 
-
-
+sudo /usr/local/redis/bin/redis-server /usr/local/redis/conf/redis.conf
+/usr/local/redis/bin/redis-cli -p 6379
 
 
 

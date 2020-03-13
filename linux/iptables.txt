@@ -1,0 +1,11 @@
+
+iptables -F    # 清除全部规则
+iptables save    # 保存规则
+
+
+
+
+
+
+
+

@@ -18,6 +18,8 @@ sudo apt-get install libcurl4-openssl-dev
 sudo apt-get install pkg-config
 sudo apt-get install libreadline-dev
 
+sudo apt-get install re2c  (提前检查是否安装)
+
 sudo apt-get install libgmp10
 sudo apt-get install libgmp-dev
 sudo apt-get install libgmp3-dev  (包括)
@@ -25,7 +27,6 @@ sudo apt-get install libtool
 sudo apt-get install perl
 sudo apt-get install libpcre3
 sudo apt-get install libpcre3-dev
-
 
 sudo apt-get install libfreetype6
 sudo apt-get install libfreetype6-dev 
@@ -70,6 +71,7 @@ apt-get install libssl-dev -- 加密库
 apt-get install cryptsetup -- cryptsetup其实是一种设备的映射关系, 我们用它来把一个设备映射成另外一个设备，然后对这个新的设备进行操作，并进行加密,对磁盘设置密码
 apt-get install gnupg2 -- 加密软件，它是PGP加密软件的满足GPL的替代物。GnuPG依照由IETF订定的OpenPGP技术标准设计。GnuPG用于加密、数字签名及产生非对称钥匙对的软件
 
+sudo apt-get install re2c  -- 可以提高性能https://blog.csdn.net/jacson_bai/article/details/43604281
 
 apt-get install apt-transport-https
 apt-get install xorg
