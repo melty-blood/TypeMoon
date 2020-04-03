@@ -1,0 +1,16 @@
+
+1. ps
+    ps -ef -opid,cmd  只显示进程id和命令
+    ps -ef | grep "/usr/lib/jvm/bin/jav[a]" | awk '{print $2}' | xargs kill -9
+
+
+2. grep
+    grep -E -v "a,b"
+    grep  "a\|b"  只显示a和b文件 -v是反向
+    grep elasti[c] 或 ps -ef | grep text | grep -v "grep"  去掉本身grep进程
+
+
+3. xargs
+    xargs CMD  例如: xargs rm
+
+

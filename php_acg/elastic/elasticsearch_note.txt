@@ -1,0 +1,112 @@
+
+
+
+
+ES
+xpack.ml.enabled: false
+network.host: 127.0.1.1
+http.port: 6003
+# memory
+bootstrap.memory_lock: false
+bootstrap.system_call_filter: false
+
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+
+# 集群名称
+cluster.name: tsukihime
+# 节点名称
+node.name: tsukihime_3
+# 是否为主节点
+node.master: false
+
+# 发现主节点
+discovery.zen.ping.unicast.hosts: ["127.0.1.1"]
+
+
+
+========================================== Note ==========================================
+// 非结构化索引
+// 创建一个结构化索引
+// 注: es8不再支持所以类型
+// 配置include_type_name: true
+{
+  "settings": {
+    "number_of_shards": 5,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "name": {
+        "type": "text"
+      },
+      "cat_id": {
+        "type": "integer"
+      },
+      "url": {
+        "type": "text"
+      },
+      "type": {
+        "type": "byte"
+      },
+      "content": {
+        "type": "text"
+      },
+      "user_id": {
+        "type": "integer"
+      },
+      "uploader": {
+        "type": "text"
+      },
+      "status": {
+        "type": "byte"
+      }
+    }
+  }
+}
+
+// 添加数据
+http://127.0.1.1:6001/video_list/_doc  [PUT, POST]
+{
+  "id": 5,
+  "name": "雪步1",
+  "cat_id": 2,
+  "url": "http://sdawqsdfafqwd",
+  "type": 1,
+  "content": "爱生活爱生活爱生活爱生活爱生活",
+  "user_id": 2,
+  "uploader": "yokiho",
+  "status": 1
+}
+
+// 搜索  http://127.0.1.1:6001/video_list/
+                _search
+{
+    "query": {
+        "match": {"name": "雪步"}
+    }
+}
+// 精确搜索
+{
+    "query": {
+        "match_phrase": {"name": "雪步"}
+    }
+}
+// 聚合场景
+{
+  "aggs": {
+    "lovelive": {
+      "terms": {
+        "field": "cat_id"
+      }
+    }
+  }
+}
+
+
+
+
+

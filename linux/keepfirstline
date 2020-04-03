@@ -1,0 +1,5 @@
+#!/bin/bash
+IFS='' read -r JUST1LIINE
+printf "%s\n" "$JUST1LIINE"
+exec "$@"
+# https://stackoverflow.com/questions/9969414/always-include-first-line-in-grep
