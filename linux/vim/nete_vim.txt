@@ -2,5 +2,6 @@
 
 2. f: 寻找  例如: df: 一直删到冒号
 
-
+3. 变身root保存  :w !sudo tee %
+   :w ~/dir/youfile
 
