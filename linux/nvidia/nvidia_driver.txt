@@ -1,0 +1,289 @@
+百度 搜索 sddm nvidia
+linux安装独立显卡
+
+
+
+准备工作
+https://bbs.deepin.org/forum.php?mod=viewthread&tid=194051&highlight=nvidia
+
+sudo apt autoremove --purge nvidia-* 
+sudo apt remove --purge nvidia-* 
+
+
+===============================================
+遇到缺少固件下面解决办法
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8107e-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8107e-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168h-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168h-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168g-3.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168g-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8106e-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8106e-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8411-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8411-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8402-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168f-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168f-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8105e-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168e-3.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168e-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168e-1.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168d-2.fw for module r8169
+W: Possible missing firmware /lib/firmware/rtl_nic/rtl8168d-1.fw for module r8169
+
+W: Possible missing firmware /lib/firmware/i915/bxt_dmc_ver1_07.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/skl_dmc_ver1_27.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/kbl_dmc_ver1_04.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/cnl_dmc_ver1_07.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/glk_dmc_ver1_04.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/kbl_guc_ver9_39.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/bxt_guc_ver9_29.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/skl_guc_ver9_33.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/kbl_huc_ver02_00_1810.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/bxt_huc_ver01_07_1398.bin for module i915
+W: Possible missing firmware /lib/firmware/i915/skl_huc_ver01_07_1398.bin for module i915
+
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915
+apt-get install firmware-realtek
+
+===============================================
+
+1. 在终端“root”权限下，禁止nouveau驱动
+使用代码：sudo dedit /etc/modprobe.d/blacklist.conf
+在新建的blacklist.conf文件中复制以下内容并保存
+blacklist nouveau
+blacklist lbm-nouveau
+options nouveau modeset=0
+alias nouveau off
+alias lbm-nouveau off
+
+2. sudo update-initramfs -u
+
+3. lsmod | grep nouveau
+    如果没有输出内容，证明成功禁止nouveau驱动
+
+4. 安装软件
+sudo apt-get install nvidia-settings
+sudo apt install nvidia-driver
+sudo apt-get install nvidia-smi
+sudo apt-get install mesa-utils
+sudo apt install nvidia-xconfig
+
+
+lspci | egrep "VGA|3D"
+记住Nvidia显卡前面的数字（这里要进行转换一下：01:00:0 --> 1:0:0）
+
+
+5. 使用代码：sudo dedit /etc/X11/xorg.conf
+        在新建的xorg.conf文件中复制以下内容并保存
+Section "Module"
+    Load "modesetting"
+EndSection
+Section "Device"
+    Identifier "nvidia"
+    Driver "nvidia"
+    BusID "PCI:X:X:X"      
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+
+6. 使用代码：sudo dedit ~/.xinitrc
+        在新建的.xinitrc文件中复制以下内容并保存
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --dpi 96
+
+
+
+===================================================================================
+https://search.bilibili.com/all?keyword=linux%20nvidia&from_source=nav_search_new
+https://space.bilibili.com/268630727?spm_id_from=333.788.b_765f7570696e666f.2
+https://www.bwsl.wang/arch/67.html#TOC-1
+https://wiki.archlinux.org/index.php/NVIDIA_Optimus_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#SDDM
+
+闭源 NVIDIA 驱动并不像 nouveau 驱动一样支持动态切换 (意味着它只能使用 NVIDIA 设备). 它还有一些已被 NVIDIA 承认但仍未修复的显著问题，然而，它使用独立显卡并 (自2013年10月) 在性能上相比 nouveau 驱动有显著优势。
+
+首先，安装官方源的驱动包 nvidia 和软件包 xorg-xrandr.
+
+然后，你必须创建一个 xorg.conf. 你需要提供 NVIDIA 显卡的 PCI 地址，可通过以下命令获取:
+
+$ lspci | grep -E "VGA|3D"
+PCI 地址是提到 NVIDIA 的输出行的前7个字符，看起来像 01:00.0. 在 xorg.conf 中，需转换为 #:#:# 格式；例如 01:00.0 应该写成 1:0:0.
+
+注意: 在一些设置中，此设置要通过对NVIDIA的驱动程序通过EDID文件来中断对显示器值的自动检测。可查看该文章——#分辨率和屏幕扫描错误“EDID errors in Xorg.log”以了解详情
+如果安装了1.17.2或者更高版本的X服务([1])
+
+
+/etc/X11/xorg.conf
+Section "Module"
+    Load "modesetting"
+EndSection
+
+Section "Device"
+    Identifier "nvidia"
+    Driver "nvidia"
+    BusID "PCI:<BusID for NVIDIA device here>"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+
+之后，把以下内容添加到 ~/.xinitrc 开头:
+
+~/.xinitrc
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+现在重启以加载驱动，X 也应该启动了。 如果你的DPI显示不正确，在上面的~/.xinitrc配置中指定dpi（实际dpi以你的设备为准），如：
+
+ xrandr --dpi 96
+如果在启动 X 时黑屏，确保 ~/.xinitrc 的两个 xrandr 命令后没有 & 符号；如果有，可能是窗口管理器在 xrandr 命令执行完成之前启动导致了黑屏。
+
+如果依然黑屏，参考下文#可选配置
+
+可选配置
+如果你使用1.17.1以上版本的Xorg服务出现崩溃，修改/etc/X11/xorg.conf配置如下（Intel设备）：
+
+# nano /etc/X11/xorg.conf
+Section "Device"
+    Identifier  "intel"
+    Driver      "modesetting"
+    BusID       "PCI:0:2:0"
+    Option      "AccelMethod"  "sna"
+    #Option      "TearFree" "True"
+    #Option      "Tiling" "True"
+    #Option      "SwapbuffersWait" "True"
+EndSection
+上面文件中的BusID必须和lspci命令的输出相匹配。搜索带有“VGA兼容控制器”的行，其中包含英特尔的内容。例如:
+
+$ lspci |grep VGA
+00:02.0 VGA compatible controller: Intel Corporation Haswell-ULT Integrated Graphics Controller (rev 0b)
+提示： 上面配置文件中后三项的选项如果不注释掉可能导致画面撕裂，但（注释掉）换取的是一定的性能损失。注意， TearFree 选项只用于"sna" 加速, 参看 Intel graphics (简体中文)。"AccelMethod" 选项中，你可以使用 "sna" 或 "uxa"。
+如果X服务启动后屏幕上什么也没有出现，检查/var/log/xorg.conf，确保该文件含有类似此行内容：
+
+/var/log/xorg.conf
+[ 16112.937] (EE) Screen 1 deleted because of no matching config section.
+如过具有类似上诉内容，更改/etc/X11/xorg.conf文件的serverlayout段，问题可能会消失：
+
+/etc/X11/xorg.conf
+Section "ServerLayout"
+    Identifier "layout"
+    Screen 1 "nvidia"
+    Inactive "intel"
+EndSection
+
+
+--------------------------------------------------------
+========== my   /etc/X11/xorg.conf  ===========
+
+Section "Module"
+    Load "modesetting"
+EndSection
+
+Section "Device"
+    Identifier "Device0"
+    Driver "nvidia"
+    BusID "1:0:0"
+    VendorName "NVIDIA Corporation"
+    Option "AllowEmptyInitialConfiguration"
+EndSection
+
+--------------------------------------------------------
+
+
+显示管理器
+如果你使用显示管理器 (Display Manager, DM)，你需要创建或编辑启动管理器的脚本而不是使用 ~/.xinitrc.
+
+LightDM
+对于 LightDM:
+
+# nano /etc/lightdm/display_setup.sh
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+赋予脚本可执行权限:
+
+# chmod +x /etc/lightdm/display_setup.sh
+编辑 /etc/lightdm/lightdm.conf 的 [Seat:*] 部分以配置 lightdm 运行这个脚本:
+
+# nano /etc/lightdm/lightdm.conf
+[Seat:*]
+display-setup-script=/etc/lightdm/display_setup.sh
+重启，你的 DM 应该启动了。
+
+SDDM
+对于 SDDM:
+
+# nano /usr/share/sddm/scripts/Xsetup
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+GDM
+
+--------------------------------------
+=========  my /usr/share/sddm/scripts/Xsetup
+
+#!/bin/sh
+# Xsetup - run as root before the login dialog appears
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
+--------------------------------------
+
+
+对于GDM，创建以下两个.desktop文件：
+
+/usr/share/gdm/greeter/autostart/optimus.desktop
+/etc/xdg/autostart/optimus.desktop
+[Desktop Entry]
+Type=Application
+Name=Optimus
+Exec=sh -c "xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto"
+NoDisplay=true
+X-GNOME-Autostart-Phase=DisplayServer
+确保GDM使用Xorg作为后端。
+
+检验 3D
+你可通过安装 mesa-demos 并运行以下命令来检验 NVIDIA 是否被使用:
+
+glxinfo | grep NVIDIA
+glxinfo | grep rendering
+
+
+
+=========================================  Other  =========================================
+
+==============================================================================
+https://en.opensuse.org/SDB:NVIDIA_troubleshooting
+
+
+nvidia-settings ERROR: Unable to load info from any available system
+If you installed nvidia-driver through package manage system and you get this error, that is because your system is running another graphics card driver (usually Intel) instead of Nvidia. You should intell opensuse-prime and select Nvidia-prime as your default graphics card driver.
+
+# zypper in opensuse-prime
+Then reboot and use prime-select to switch graphics driver.
+
+# prime-select nvidia
+Also, regenerate /etc/X11/xorg.conf might be helpful.
+
+# rm -v /etc/X11/xorg.conf
+# nvidia-xconfig
+Then reboot, you should see nvidia driver is running.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
