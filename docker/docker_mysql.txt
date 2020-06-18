@@ -4,6 +4,9 @@ show grants for 'acg_one'@'%';
 grant all privileges on *.* to 'lovelive'@'%' with grant option;
 show grants for 'lovelive'@'%';
 
+grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
+flush privileges;
+
 
 select host,user,plugin,authentication_string from mysql.user;
 create user 'lovelive'@'%' identified WITH mysql_native_password by 'kotori'; -- 创建用户
@@ -31,5 +34,3 @@ docker run -tid --name umi_my -p 22331:3306 --restart=always --privileged=true \
 -v /home/kotori/docker/data:/var/lib/mysql \
 -v /home/kotori/docker/mysql-files:/var/lib/mysql-files \
 -e MYSQL_ROOT_PASSWORD="765876" b8fd9553f1f0
-
-

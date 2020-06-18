@@ -57,11 +57,10 @@ sudo apt-get install libpq-dev
 sudo apt-get install 
 sudo apt-get install 
 sudo apt-get install 
-sudo apt-get install 
 
 
 apt-get update --fix-missing
-
+apt -f install
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 apt-get install perl -- 一种功能丰富的计算机程序语言,运行在超过100种计算机平台上,适用广泛
